@@ -1,0 +1,174 @@
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+{{parent()}}
+<style>
+    html {
+        height: 100%;
+    }
+
+    .btnAction {
+        margin: 10px;
+        display: inline-block;
+    }
+
+    #tableProducts_wrapper {
+        width: 100%;
+    }
+
+    input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2);
+        /* IE */
+        -moz-transform: scale(2);
+        /* FF */
+        -webkit-transform: scale(2);
+        /* Safari and Chrome */
+        -o-transform: scale(2);
+        /* Opera */
+        transform: scale(2);
+        padding: 10px;
+    }
+
+    .createCandlestick {
+        transform: scale(0.9);
+    }
+
+    .candlestick-off,
+    .candlestick-on,
+    .candlestick-nc {
+        font-size: 14px !important;
+    }
+
+    .modalContainer {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modalContainer .modal-content {
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #999);
+        background: -webkit-linear-gradient(#fff, #999);
+        background: -o-linear-gradient(#fff, #999);
+        margin: auto;
+        padding: 20px;
+        border: 1px solid lightgray;
+        width: 80%;
+    }
+
+    
+
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+
+    .close:hover {
+        background: #cdcdcd;
+    }
+</style>
+{% endblock %}
+{% block body %}
+ <div id="page-content-wrapper">
+        {% include "navUser.html.twig" %}
+            <div class="container-fluid">
+               <div class="row justify-content-center align-items-center h-100">
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xs-6" style="margin-top:90px;">
+            <form method="post">
+                <br>
+                <h2 style="color:blck; text-align:center;">Mis Datos</h2>
+                <div class="form-group">
+                    <input type="text" name="name" id="inputName" class="form-control form-control-lg" placeholder="Nombre" required autofocus value="{{ user.name }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="surname" id="inputSurname" class="form-control form-control-lg" placeholder="Apellidos" required autofocus value="{{ user.surname }}">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" id="inputEmail" class="form-control form-control-lg" placeholder="Email" required autofocus value="{{ user.login }}">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required value="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" id="inputPasswordVerification" class="form-control form-control-lg" placeholder="Password Verificación" required value="">
+                </div>
+                <div class="form-group">
+                    <button id="btnReg" class="btn btn-info btn-lg btn-block" type="submit">Guardar Datos</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+ {% endblock %}
+
+ {% block javascripts %}
+    {{ parent() }}
+    <script>
+        function checkForm(){
+            var result = true;
+
+
+            if( $("#inputPassword").val() != $("#inputPasswordVerification").val() || $("#inputPassword").val() ==='' ){
+                result = false;
+                Swal.fire(
+                    'No coinciden la contraseña, compruebe que sea la misma',
+                    result.message,
+                    'error'
+                );
+            }
+
+            return result;
+        }
+
+        $(document).ready(function(){
+            $("#btnReg").click(function(e){
+                e.preventDefault();
+                if(checkForm()){
+                   
+                    $.ajax({
+                        url: "{{url('registerManually')}}",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            "name":$("#inputName").val(),
+                            "surname":$("#inputSurname").val(),
+                            "password":$("#inputPassword").val(),
+                            "email":$("#inputEmail").val(),
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Usuario Registrado correctamente. Ya puede loguearse');
+                            }
+                             var tmpLink = '<a id="tmpLink" href="'+result.url+'"></a>';
+                                $("body").append(tmpLink);
+                                $("#tmpLink")[0].click();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

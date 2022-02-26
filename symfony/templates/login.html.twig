@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{parent()}}
+    <style>
+        html{
+            height:100%;
+            font-size:12px;
+        }
+        body.login-body{
+            height:100%;
+            padding-top:20px;
+        }
+        .btn-info {
+            color: #fff;
+            background-color: #000;
+            border-color: #000;
+        }
+        .btn-info:hover {
+            color: #fff;
+            background-color: #333;
+            border-color: #000;
+        }
+        .btn-reg {
+            color: #fff;
+            background-color: #cdcdcd;
+            border-color: #000;
+        }
+        .btn-reg:hover {
+            color: #fff;
+            background-color: #333;
+            border-color: #000;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            width: 80%;
+          }
+    </style>
+{% endblock %}
+
+{% block body %}
+ <div id="page-content-wrapper">
+        {% include "nav.html.twig" %}
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xs-6" style="margin-top:90px;">
+                    <form method="post">
+                        <br>
+                        <h2 style="color:blck; text-align:center;">Login</h2>
+                        <div class="form-group">
+                            <input type="email" name="email" id="inputEmail" class="form-control form-control-lg" placeholder="Email" required autofocus value="">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required value="">
+                        </div>
+                        <div class="form-group">
+                            <button id="btnLogin" class="btn btn-info btn-lg btn-block" type="submit">Entrar</button>
+                        </div>
+                        <div class="form-group">
+                            <a  href="{{url('register')}}" class="btn btn-reg btn-lg btn-block" >Registrar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function checkForm(){
+            var result = true;
+
+            if( ! validateEmail( $("#inputEmail").val() ) ){
+                result = false;
+                Swal.fire(
+                    '{% trans %}login.error.notvalid.email{% endtrans %}',
+                    result.message,
+                    'error'
+                );
+            }
+
+            if( $("#inputPassword").val() == "" ){
+                result = false;
+                Swal.fire(
+                    'Error Password',
+                    result.message,
+                    'error'
+                );
+            }
+
+            return result;
+        }
+
+        $(document).ready(function(){
+            $("#btnLogin").click(function(e){
+                e.preventDefault();
+                if(checkForm()){
+                   
+                    $.ajax({
+                        url: "{{url('loginManually')}}",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            "email":$("#inputEmail").val(),
+                            "password":$("#inputPassword").val(),
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                                var tmpLink = '<a id="tmpLink" href="'+result.url+'"></a>';
+                                $("body").append(tmpLink);
+                                $("#tmpLink")[0].click();
+                            }else{
+                                if(result.errorUser){
+                                    Swal.fire(
+                                        '{% trans %}login.error.user{% endtrans %}',
+                                        result.message,
+                                        'error'
+                                    );
+                                }else{
+                                    if(result.errorPassword){
+                                        Swal.fire(
+                                            '{% trans %}login.error.password{% endtrans %}',
+                                            result.message,
+                                            'error'
+                                        );
+                                    }else{
+                                        if(result.errorData){
+                                            Swal.fire(
+                                                '{% trans %}login.error.swal.errorData{% endtrans %}',
+                                                result.message,
+                                                'error'
+                                            );
+                                        }else{
+                                            Swal.fire(
+                                                '{% trans %}login.error.swal.something.wrong{% endtrans %}',
+                                                result.message,
+                                                'error'
+                                            );
+                                        }  
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}
