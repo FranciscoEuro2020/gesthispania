@@ -45,10 +45,38 @@
                     </select>
                 </div>       
                 <div class="form-group">
-                    <button id="btn-credit" class="btn btn-info btn-lg btn-block" type="submit">Registrar Asignatura</button>
+                    <button id="btnSubject" class="btn btn-info btn-lg btn-block" type="submit">Registrar Asignatura</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>       
+        $(document).ready(function(){
+            $("#btnSubject").click(function(e){
+                e.preventDefault();
+                    $.ajax({
+                        url: "{{url('subjectManually')}}",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            "name":$("#inputName").val(),
+                            "credit":$("#inputCredit").val(),
+                            "duration":$("#inputDuration").val()
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Asignatura Registrada correctamente.');
+                            }
+                             var tmpLink = '<a id="tmpLink" href="'+result.url+'"></a>';
+                                $("body").append(tmpLink);
+                                $("#tmpLink")[0].click();
+                        }
+                    });
+            });
+        });
+    </script>
 {% endblock %}
