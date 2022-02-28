@@ -2,7 +2,7 @@
   0 => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController',
   1 => 'App\\Controller\\RegistroController',
   2 => 'App\\Controller\\SubjectController',
-  3 => 'App\\Entity\\Curso',
+  3 => 'App\\Entity\\Course',
   4 => 'App\\Entity\\Subject',
   5 => 'App\\Entity\\User',
   6 => 'Doctrine\\Bundle\\DoctrineBundle\\Controller\\ProfilerController',

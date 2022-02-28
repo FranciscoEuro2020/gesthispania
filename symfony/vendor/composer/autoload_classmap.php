@@ -8,7 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Controller\\RegistroController' => $baseDir . '/src/Controller/RegistroController.php',
     'App\\Controller\\SubjectController' => $baseDir . '/src/Controller/SubjectController.php',
-    'App\\Entity\\Curso' => $baseDir . '/src/Entity/Curso.php',
+    'App\\Entity\\Course' => $baseDir . '/src/Entity/Course.php',
     'App\\Entity\\Subject' => $baseDir . '/src/Entity/Subject.php',
     'App\\Entity\\User' => $baseDir . '/src/Entity/User.php',
     'App\\Form\\UserType' => $baseDir . '/src/Form/UserType.php',

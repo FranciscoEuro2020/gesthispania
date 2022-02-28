@@ -27,6 +27,7 @@ class __TwigTemplate_3a8212df3b563caedb1c83a309242bdf816f95515feb728c2d0ff329f1c
         $this->blocks = [
             'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -104,26 +105,72 @@ class __TwigTemplate_3a8212df3b563caedb1c83a309242bdf816f95515feb728c2d0ff329f1c
             <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
             <form method=\"post\">
                 <br>
-                <h2 style=\"color:blck; text-align:center;\">Cursos</h2>
+                <h2 style=\"color:blck; text-align:center;\">Crear Cursos</h2>
                 <div class=\"form-group\">
-                    <input type=\"text\" name=\"course\" id=\"inputCurso\" class=\"form-control form-control-lg\" placeholder=\"curso\" required autofocus value=\"\">
+                    <input type=\"text\" name=\"course\" id=\"inputCurso\" class=\"form-control form-control-lg\" placeholder=\"course\" required>
                 </div>
                 <div class=\"form-group\">
-                    <input type=\"text\" name=\"title\" id=\"inputTitle\" class=\"form-control form-control-lg\" placeholder=\"title\" required autofocus value=\"\">
+                    <input type=\"text\" name=\"title\" id=\"inputTitle\" class=\"form-control form-control-lg\" placeholder=\"title\" required>
                 </div>
                 <div class=\"form-group\">
-                    <input type=\"number\" name=\"duration\" id=\"inputDuration\" class=\"form-control form-control-lg\" placeholder=\"Duración\" required autofocus value=\"\">
+                    <input type=\"number\" name=\"month\" id=\"inputMonth\" class=\"form-control form-control-lg\" placeholder=\"Duración\" required>
                 </div>
                 <div class=\"form-group\">
-                    <input type=\"number\" name=\"year\" id=\"inputYear\" class=\"form-control form-control-lg\" placeholder=\"Año\" required autofocus value=\"\">
+                    <input type=\"number\" name=\"year\" id=\"inputYear\" class=\"form-control form-control-lg\" placeholder=\"Año\" required>
                 </div>
                 <div class=\"form-group\">
-                    <button class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Curso</button>
+                    <button id=\"btnCourse\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Course</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 55
+    public function block_javascripts($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 56
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+    <script>
+        \$(document).ready(function(){
+            \$(\"#btnCourse\").click(function(e){
+                e.preventDefault();
+                    \$.ajax({
+                        url: \"";
+        // line 62
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("courseManually");
+        echo "\",
+                        type: \"POST\",
+                        dataType: 'json',
+                        data: {
+                            \"course\":\$(\"#inputCurso\").val(),
+                            \"title\":\$(\"#inputTitle\").val(),
+                            \"month\":\$(\"#inputMonth\").val(),
+                            \"year\":\$(\"#inputYear\").val(),
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Course Registrado correctamente.');
+                            }
+                             var tmpLink = '<a id=\"tmpLink\" href=\"'+result.url+'\"></a>';
+                                \$(\"body\").append(tmpLink);
+                                \$(\"#tmpLink\")[0].click();
+                        }
+                    });
+            });
+        });
+    </script>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -142,7 +189,7 @@ class __TwigTemplate_3a8212df3b563caedb1c83a309242bdf816f95515feb728c2d0ff329f1c
 
     public function getDebugInfo()
     {
-        return array (  102 => 29,  100 => 28,  97 => 27,  90 => 26,  60 => 3,  53 => 2,  36 => 1,);
+        return array (  152 => 62,  142 => 56,  135 => 55,  103 => 29,  101 => 28,  98 => 27,  91 => 26,  61 => 3,  54 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -180,26 +227,55 @@ class __TwigTemplate_3a8212df3b563caedb1c83a309242bdf816f95515feb728c2d0ff329f1c
             <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
             <form method=\"post\">
                 <br>
-                <h2 style=\"color:blck; text-align:center;\">Cursos</h2>
+                <h2 style=\"color:blck; text-align:center;\">Crear Cursos</h2>
                 <div class=\"form-group\">
-                    <input type=\"text\" name=\"course\" id=\"inputCurso\" class=\"form-control form-control-lg\" placeholder=\"curso\" required autofocus value=\"\">
+                    <input type=\"text\" name=\"course\" id=\"inputCurso\" class=\"form-control form-control-lg\" placeholder=\"course\" required>
                 </div>
                 <div class=\"form-group\">
-                    <input type=\"text\" name=\"title\" id=\"inputTitle\" class=\"form-control form-control-lg\" placeholder=\"title\" required autofocus value=\"\">
+                    <input type=\"text\" name=\"title\" id=\"inputTitle\" class=\"form-control form-control-lg\" placeholder=\"title\" required>
                 </div>
                 <div class=\"form-group\">
-                    <input type=\"number\" name=\"duration\" id=\"inputDuration\" class=\"form-control form-control-lg\" placeholder=\"Duración\" required autofocus value=\"\">
+                    <input type=\"number\" name=\"month\" id=\"inputMonth\" class=\"form-control form-control-lg\" placeholder=\"Duración\" required>
                 </div>
                 <div class=\"form-group\">
-                    <input type=\"number\" name=\"year\" id=\"inputYear\" class=\"form-control form-control-lg\" placeholder=\"Año\" required autofocus value=\"\">
+                    <input type=\"number\" name=\"year\" id=\"inputYear\" class=\"form-control form-control-lg\" placeholder=\"Año\" required>
                 </div>
                 <div class=\"form-group\">
-                    <button class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Curso</button>
+                    <button id=\"btnCourse\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Course</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        \$(document).ready(function(){
+            \$(\"#btnCourse\").click(function(e){
+                e.preventDefault();
+                    \$.ajax({
+                        url: \"{{url('courseManually')}}\",
+                        type: \"POST\",
+                        dataType: 'json',
+                        data: {
+                            \"course\":\$(\"#inputCurso\").val(),
+                            \"title\":\$(\"#inputTitle\").val(),
+                            \"month\":\$(\"#inputMonth\").val(),
+                            \"year\":\$(\"#inputYear\").val(),
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Course Registrado correctamente.');
+                            }
+                             var tmpLink = '<a id=\"tmpLink\" href=\"'+result.url+'\"></a>';
+                                \$(\"body\").append(tmpLink);
+                                \$(\"#tmpLink\")[0].click();
+                        }
+                    });
+            });
+        });
+    </script>
 {% endblock %}", "course.html.twig", "/var/www/symfony/templates/course.html.twig");
     }
 }

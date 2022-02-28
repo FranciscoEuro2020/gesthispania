@@ -171,6 +171,8 @@ class __TwigTemplate_ee370447b5a1dc36afeef104a2ace9bbcaa061982e26c23f58fa709cafb
         <div class=\"col-12\" style=\"padding-top:20px;text-align:center;\">
             <div class=\"col-12\" style=\"padding:40px;\">
                  <div class=\"col-sm-12 col-xs-12 col-md-12 col-lg-12\" style=\"font-size:13px;\">
+                  <br>
+                    <h2 style=\"color:blck; text-align:center;\">Listado Asignaturas</h2>
                     <table class=\"table table-striped table-bordered order-column\" cellspacing=\"0\">
                     <th>Id</th>
                     <th>Nombre</th>
@@ -178,27 +180,27 @@ class __TwigTemplate_ee370447b5a1dc36afeef104a2ace9bbcaa061982e26c23f58fa709cafb
                     <th>Créditos</th>
                     
                     ";
-        // line 107
+        // line 109
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["subject"]) || array_key_exists("subject", $context) ? $context["subject"] : (function () { throw new RuntimeError('Variable "subject" does not exist.', 107, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["subject"]) || array_key_exists("subject", $context) ? $context["subject"] : (function () { throw new RuntimeError('Variable "subject" does not exist.', 109, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["dato"]) {
-            // line 108
+            // line 110
             echo "                        <tr>
                             <td>";
-            // line 109
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "id", [], "any", false, false, false, 109), "html", null, true);
-            echo "</td>
-                            <td>";
-            // line 110
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "name", [], "any", false, false, false, 110), "html", null, true);
-            echo "</td>
-                            <td>";
             // line 111
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "duration", [], "any", false, false, false, 111), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "id", [], "any", false, false, false, 111), "html", null, true);
             echo "</td>
                             <td>";
             // line 112
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "credits", [], "any", false, false, false, 112), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "name", [], "any", false, false, false, 112), "html", null, true);
+            echo "</td>
+                            <td>";
+            // line 113
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "duration", [], "any", false, false, false, 113), "html", null, true);
+            echo "</td>
+                            <td>";
+            // line 114
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["dato"], "credits", [], "any", false, false, false, 114), "html", null, true);
             echo "</td>
                         </tr>
                     ";
@@ -206,7 +208,7 @@ class __TwigTemplate_ee370447b5a1dc36afeef104a2ace9bbcaa061982e26c23f58fa709cafb
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['dato'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 115
+        // line 117
         echo "                    </table>
                     </div>
                 </div>
@@ -232,7 +234,7 @@ class __TwigTemplate_ee370447b5a1dc36afeef104a2ace9bbcaa061982e26c23f58fa709cafb
 
     public function getDebugInfo()
     {
-        return array (  210 => 115,  201 => 112,  197 => 111,  193 => 110,  189 => 109,  186 => 108,  182 => 107,  169 => 96,  167 => 95,  164 => 94,  157 => 93,  60 => 3,  53 => 2,  36 => 1,);
+        return array (  212 => 117,  203 => 114,  199 => 113,  195 => 112,  191 => 111,  188 => 110,  184 => 109,  169 => 96,  167 => 95,  164 => 94,  157 => 93,  60 => 3,  53 => 2,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -337,6 +339,8 @@ class __TwigTemplate_ee370447b5a1dc36afeef104a2ace9bbcaa061982e26c23f58fa709cafb
         <div class=\"col-12\" style=\"padding-top:20px;text-align:center;\">
             <div class=\"col-12\" style=\"padding:40px;\">
                  <div class=\"col-sm-12 col-xs-12 col-md-12 col-lg-12\" style=\"font-size:13px;\">
+                  <br>
+                    <h2 style=\"color:blck; text-align:center;\">Listado Asignaturas</h2>
                     <table class=\"table table-striped table-bordered order-column\" cellspacing=\"0\">
                     <th>Id</th>
                     <th>Nombre</th>

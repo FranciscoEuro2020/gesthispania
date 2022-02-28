@@ -17,12 +17,12 @@ class PanelController extends AbstractController
     public function panel(EntityManagerInterface $entityManager,Request $request)
     {
         $response = array();
-        $id =  $id = $request->get("id");
+        $id = $request->get("id");
         $response = $entityManager->getRepository("App:User")->findOneById($id);
-       
-        
-         return $this->render('panel.html.twig', array(
+  
+        return $this->render('panel.html.twig', array(
                'user' => $response,
+               'id' => $id
             ));
        
     }

@@ -204,15 +204,19 @@
     <service id="App\Form\UserType" class="App\Form\UserType" public="true" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
-    <service id="App\Repository\AssignmentsRepository" class="App\Repository\AssignmentsRepository" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Repository\CourseRepository" class="App\Repository\CourseRepository" public="true" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Repository\CursoRepository" class="App\Repository\CursoRepository" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Repository\RegisterRepository" class="App\Repository\RegisterRepository" public="true" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\SubjectRepository" class="App\Repository\SubjectRepository" public="true" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\SubjectsCourseRepository" class="App\Repository\SubjectsCourseRepository" public="true" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -1879,7 +1883,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.iX3jZL3"/>
+      <argument type="service" id=".service_locator.cyINmFM"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -2751,12 +2755,14 @@
     <service id=".abstract.instanceof.App\Controller\RegistroController" class="App\Controller\RegistroController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserType" class="App\Form\UserType" public="true" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserType" class="App\Form\UserType" public="true" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AssignmentsRepository" class="App\Repository\AssignmentsRepository" public="true" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\AssignmentsRepository" class="App\Repository\AssignmentsRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CursoRepository" class="App\Repository\CursoRepository" public="true" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\CursoRepository" class="App\Repository\CursoRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CourseRepository" class="App\Repository\CourseRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CourseRepository" class="App\Repository\CourseRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RegisterRepository" class="App\Repository\RegisterRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\RegisterRepository" class="App\Repository\RegisterRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SubjectRepository" class="App\Repository\SubjectRepository" public="true" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\SubjectRepository" class="App\Repository\SubjectRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SubjectsCourseRepository" class="App\Repository\SubjectsCourseRepository" public="true" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\SubjectsCourseRepository" class="App\Repository\SubjectsCourseRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" public="true" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.gSv9zYw" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -3086,12 +3092,17 @@
         <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
       </argument>
     </service>
-    <service id=".service_locator.RpMNDH3" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.FhtGGHi" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\CourseController::addSubject" type="service_closure" id=".service_locator.l2QwsaZ"/>
+        <argument key="App\Controller\CourseController::assignSubject" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\CourseController::asssignManually" type="service_closure" id=".service_locator.5miB8_X"/>
         <argument key="App\Controller\CourseController::courseManually" type="service_closure" id=".service_locator.5miB8_X"/>
         <argument key="App\Controller\CourseController::listCourse" type="service_closure" id=".service_locator.l2QwsaZ"/>
+        <argument key="App\Controller\CourseController::listCourseAssign" type="service_closure" id=".service_locator.l2QwsaZ"/>
+        <argument key="App\Controller\CourseController::listCourseUser" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\CourseController::listCourseUserManually" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\CourseController::listSubject" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\CourseController::subjectManually" type="service_closure" id=".service_locator.5miB8_X"/>
         <argument key="App\Controller\PanelController::panel" type="service_closure" id=".service_locator.l2QwsaZ"/>
@@ -3104,8 +3115,13 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
         <argument key="App\Controller\CourseController:addSubject" type="service_closure" id=".service_locator.l2QwsaZ"/>
+        <argument key="App\Controller\CourseController:assignSubject" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\CourseController:asssignManually" type="service_closure" id=".service_locator.5miB8_X"/>
         <argument key="App\Controller\CourseController:courseManually" type="service_closure" id=".service_locator.5miB8_X"/>
         <argument key="App\Controller\CourseController:listCourse" type="service_closure" id=".service_locator.l2QwsaZ"/>
+        <argument key="App\Controller\CourseController:listCourseAssign" type="service_closure" id=".service_locator.l2QwsaZ"/>
+        <argument key="App\Controller\CourseController:listCourseUser" type="service_closure" id=".service_locator.5miB8_X"/>
+        <argument key="App\Controller\CourseController:listCourseUserManually" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\CourseController:listSubject" type="service_closure" id=".service_locator.l2QwsaZ"/>
         <argument key="App\Controller\CourseController:subjectManually" type="service_closure" id=".service_locator.5miB8_X"/>
         <argument key="App\Controller\PanelController:panel" type="service_closure" id=".service_locator.l2QwsaZ"/>
@@ -3185,12 +3201,13 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.iX3jZL3" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.cyINmFM" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Repository\AssignmentsRepository" type="service_closure" id="App\Repository\AssignmentsRepository"/>
-        <argument key="App\Repository\CursoRepository" type="service_closure" id="App\Repository\CursoRepository"/>
+        <argument key="App\Repository\CourseRepository" type="service_closure" id="App\Repository\CourseRepository"/>
+        <argument key="App\Repository\RegisterRepository" type="service_closure" id="App\Repository\RegisterRepository"/>
         <argument key="App\Repository\SubjectRepository" type="service_closure" id="App\Repository\SubjectRepository"/>
+        <argument key="App\Repository\SubjectsCourseRepository" type="service_closure" id="App\Repository\SubjectsCourseRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
@@ -3336,12 +3353,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.RpMNDH3"/>
+      <argument type="service" id=".service_locator.FhtGGHi"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.RpMNDH3"/>
+      <argument type="service" id=".service_locator.FhtGGHi"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -3958,7 +3975,7 @@
     <service id="Twig\Environment" alias="twig"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.RpMNDH3"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.FhtGGHi"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -3966,7 +3983,7 @@
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.jMETgS4" alias=".service_locator.RpMNDH3"/>
+    <service id=".service_locator.DuA7QjZ" alias=".service_locator.FhtGGHi"/>
     <service id=".service_locator.GRReuIi" alias=".service_locator.CfnR51D"/>
     <service id=".service_locator.4hi2aOY" alias=".service_locator.bBRwv06"/>
     <service id=".service_locator.W9y3dzm" alias=".service_locator.GNc8e5B"/>

@@ -38,12 +38,7 @@ class __TwigTemplate_4f028e2597f809edf941c7015554e60a61a02341da4d96562a82f086b5b
 
         // line 1
         echo "<nav class=\"navbar navbar-expand-lg navbar-light bg-light border-bottom\">
-                <button class=\"btn btn-primary\" id=\"menu-toggle\"><i class=\"fa fa-bars\"></i></button>
-                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\"
-                    data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"
-                    aria-label=\"Toggle navigation\">
-                    <span class=\"navbar-toggler-icon\"></span>
-                </button>
+                
                 <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
                     <ul class=\"navbar-nav mr-auto\">
                         <li class=\"nav-item\">
@@ -54,7 +49,10 @@ class __TwigTemplate_4f028e2597f809edf941c7015554e60a61a02341da4d96562a82f086b5b
                     <ul class=\"navbar-nav ml-auto mt-2 mt-lg-0\">
                         <li class=\"nav-item\">
                             <a style=\"color:black;\" class=\"nav-link\"
-                                href=\"\">Logout <i
+                                href=\"";
+        // line 13
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("home");
+        echo "\">Logout <i
                                     class=\"fas fa-sign-out-alt\"></i></a>
                         </li>
                         
@@ -64,10 +62,18 @@ class __TwigTemplate_4f028e2597f809edf941c7015554e60a61a02341da4d96562a82f086b5b
                                 </a>
                                 <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdown\">
                                     <a class=\"dropdown-item\" href=\"";
-        // line 27
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("course");
-        echo "\">Crear Curso</a>
-                                      </div>
+        // line 22
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("listCourseUser");
+        echo "?id=";
+        echo twig_escape_filter($this->env, (isset($context["id"]) || array_key_exists("id", $context) ? $context["id"] : (function () { throw new RuntimeError('Variable "id" does not exist.', 22, $this->source); })()), "html", null, true);
+        echo "\">Listado</a>
+                                     <a class=\"dropdown-item\" href=\"";
+        // line 23
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("listCourseAssign");
+        echo "?id=";
+        echo twig_escape_filter($this->env, (isset($context["id"]) || array_key_exists("id", $context) ? $context["id"] : (function () { throw new RuntimeError('Variable "id" does not exist.', 23, $this->source); })()), "html", null, true);
+        echo "\">Mis cursos</a>
+                                </div>
                             </li>
                             
                     </ul>
@@ -90,18 +96,13 @@ class __TwigTemplate_4f028e2597f809edf941c7015554e60a61a02341da4d96562a82f086b5b
 
     public function getDebugInfo()
     {
-        return array (  68 => 27,  40 => 1,);
+        return array (  72 => 23,  66 => 22,  54 => 13,  40 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("<nav class=\"navbar navbar-expand-lg navbar-light bg-light border-bottom\">
-                <button class=\"btn btn-primary\" id=\"menu-toggle\"><i class=\"fa fa-bars\"></i></button>
-                <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\"
-                    data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"
-                    aria-label=\"Toggle navigation\">
-                    <span class=\"navbar-toggler-icon\"></span>
-                </button>
+                
                 <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
                     <ul class=\"navbar-nav mr-auto\">
                         <li class=\"nav-item\">
@@ -112,7 +113,7 @@ class __TwigTemplate_4f028e2597f809edf941c7015554e60a61a02341da4d96562a82f086b5b
                     <ul class=\"navbar-nav ml-auto mt-2 mt-lg-0\">
                         <li class=\"nav-item\">
                             <a style=\"color:black;\" class=\"nav-link\"
-                                href=\"\">Logout <i
+                                href=\"{{url('home')}}\">Logout <i
                                     class=\"fas fa-sign-out-alt\"></i></a>
                         </li>
                         
@@ -121,8 +122,9 @@ class __TwigTemplate_4f028e2597f809edf941c7015554e60a61a02341da4d96562a82f086b5b
                                     Menu
                                 </a>
                                 <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdown\">
-                                    <a class=\"dropdown-item\" href=\"{{url('course')}}\">Crear Curso</a>
-                                      </div>
+                                    <a class=\"dropdown-item\" href=\"{{url('listCourseUser')}}?id={{id}}\">Listado</a>
+                                     <a class=\"dropdown-item\" href=\"{{url('listCourseAssign')}}?id={{id}}\">Mis cursos</a>
+                                </div>
                             </li>
                             
                     </ul>
