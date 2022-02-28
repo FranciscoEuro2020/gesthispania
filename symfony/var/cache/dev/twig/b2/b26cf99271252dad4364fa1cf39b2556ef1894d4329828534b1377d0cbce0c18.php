@@ -135,7 +135,7 @@ class __TwigTemplate_5e3023a1099553610213e8c4eef936c157d7e5f113ee39fcf7b33a4fac1
                             <a  href=\"";
         // line 61
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("register");
-        echo "\" class=\"btn btn-reg btn-lg btn-block\" >Registrar</a>
+        echo "\" class=\"btn btn-info btn-lg btn-block\" >Registrar</a>
                         </div>
                     </form>
                 </div>
@@ -346,7 +346,7 @@ class __TwigTemplate_5e3023a1099553610213e8c4eef936c157d7e5f113ee39fcf7b33a4fac1
                             <button id=\"btnLogin\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Entrar</button>
                         </div>
                         <div class=\"form-group\">
-                            <a  href=\"{{url('register')}}\" class=\"btn btn-reg btn-lg btn-block\" >Registrar</a>
+                            <a  href=\"{{url('register')}}\" class=\"btn btn-info btn-lg btn-block\" >Registrar</a>
                         </div>
                     </form>
                 </div>

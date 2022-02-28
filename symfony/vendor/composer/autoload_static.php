@@ -394,7 +394,7 @@ class ComposerStaticInitbb60baab247ee371d01f7b69a2d86b75
     public static $classMap = array (
         'App\\Controller\\RegistroController' => __DIR__ . '/../..' . '/src/Controller/RegistroController.php',
         'App\\Controller\\SubjectController' => __DIR__ . '/../..' . '/src/Controller/SubjectController.php',
-        'App\\Entity\\Curso' => __DIR__ . '/../..' . '/src/Entity/Curso.php',
+        'App\\Entity\\Course' => __DIR__ . '/../..' . '/src/Entity/Course.php',
         'App\\Entity\\Subject' => __DIR__ . '/../..' . '/src/Entity/Subject.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
         'App\\Form\\UserType' => __DIR__ . '/../..' . '/src/Form/UserType.php',

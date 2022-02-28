@@ -41,15 +41,43 @@
                 <div class="form-group">
                     <select class="form-control form-control-lg" id="course"  name="course">
                      {% for dato in course %}
-                        <option value="{{ dato.id }}">{{ dato.title }} ( {{ dato.curso }} )</option>
+                        <option value="{{ dato.id }}">{{ dato.title }} ( {{ dato.course }} )</option>
                     {% endfor %}
                     </select>
                 </div>        
                 <div class="form-group">
-                    <button id="btn-credit" class="btn btn-info btn-lg btn-block" type="submit">Asignar Asignatura</button>
+                    <button id="btnAssign" class="btn btn-info btn-lg btn-block" type="submit">Asignar Asignatura</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $("#btnAssign").click(function(e){
+                e.preventDefault();
+                    $.ajax({
+                        url: "{{url('asssignManually')}}",
+                        type: "POST",
+                        dataType: 'json',
+                        data: {
+                            "course":$("#course").val(),
+                            "subject":$("#subject").val(),
+                           
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Asignatura asignada correctamente.');
+                            }
+                             if(result.error){
+                                  alert('Error ya esta la Asignatura asignada a ese course.');
+                             }
+                        }
+                    });
+            });
+        });
+    </script>
 {% endblock %}

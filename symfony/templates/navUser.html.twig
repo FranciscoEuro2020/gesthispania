@@ -1,10 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars"></i></button>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
@@ -15,7 +10,7 @@
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
                             <a style="color:black;" class="nav-link"
-                                href="">Logout <i
+                                href="{{url('home')}}">Logout <i
                                     class="fas fa-sign-out-alt"></i></a>
                         </li>
                         
@@ -24,8 +19,9 @@
                                     Menu
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{url('course')}}">Crear Curso</a>
-                                      </div>
+                                    <a class="dropdown-item" href="{{url('listCourseUser')}}?id={{id}}">Listado</a>
+                                     <a class="dropdown-item" href="{{url('listCourseAssign')}}?id={{id}}">Mis cursos</a>
+                                </div>
                             </li>
                             
                     </ul>

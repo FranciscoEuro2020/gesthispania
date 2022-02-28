@@ -27,6 +27,7 @@ class __TwigTemplate_fe6ddac2b3de62b6adcfcc06052e98d94c74d94bad98bcc20484a67adc5
         $this->blocks = [
             'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -104,7 +105,7 @@ class __TwigTemplate_fe6ddac2b3de62b6adcfcc06052e98d94c74d94bad98bcc20484a67adc5
             <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
             <form method=\"post\">
                 <br>
-                <h2 style=\"color:blck; text-align:center;\">Asignatura</h2>
+                <h2 style=\"color:blck; text-align:center;\">Crear Asignatura</h2>
                 <div class=\"form-group\">
                     <input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control form-control-lg\" placeholder=\"Nombre\" required autofocus value=\"\">
                 </div>
@@ -118,12 +119,57 @@ class __TwigTemplate_fe6ddac2b3de62b6adcfcc06052e98d94c74d94bad98bcc20484a67adc5
                     </select>
                 </div>       
                 <div class=\"form-group\">
-                    <button id=\"btn-credit\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Asignatura</button>
+                    <button id=\"btnSubject\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Asignatura</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+    }
+
+    // line 55
+    public function block_javascripts($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 56
+        echo "    ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+    <script>       
+        \$(document).ready(function(){
+            \$(\"#btnSubject\").click(function(e){
+                e.preventDefault();
+                    \$.ajax({
+                        url: \"";
+        // line 62
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("subjectManually");
+        echo "\",
+                        type: \"POST\",
+                        dataType: 'json',
+                        data: {
+                            \"name\":\$(\"#inputName\").val(),
+                            \"credit\":\$(\"#inputCredit\").val(),
+                            \"duration\":\$(\"#inputDuration\").val()
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Asignatura Registrada correctamente.');
+                            }
+                             var tmpLink = '<a id=\"tmpLink\" href=\"'+result.url+'\"></a>';
+                                \$(\"body\").append(tmpLink);
+                                \$(\"#tmpLink\")[0].click();
+                        }
+                    });
+            });
+        });
+    </script>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -142,7 +188,7 @@ class __TwigTemplate_fe6ddac2b3de62b6adcfcc06052e98d94c74d94bad98bcc20484a67adc5
 
     public function getDebugInfo()
     {
-        return array (  102 => 29,  100 => 28,  97 => 27,  90 => 26,  60 => 3,  53 => 2,  36 => 1,);
+        return array (  152 => 62,  142 => 56,  135 => 55,  103 => 29,  101 => 28,  98 => 27,  91 => 26,  61 => 3,  54 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -180,7 +226,7 @@ class __TwigTemplate_fe6ddac2b3de62b6adcfcc06052e98d94c74d94bad98bcc20484a67adc5
             <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
             <form method=\"post\">
                 <br>
-                <h2 style=\"color:blck; text-align:center;\">Asignatura</h2>
+                <h2 style=\"color:blck; text-align:center;\">Crear Asignatura</h2>
                 <div class=\"form-group\">
                     <input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control form-control-lg\" placeholder=\"Nombre\" required autofocus value=\"\">
                 </div>
@@ -194,12 +240,40 @@ class __TwigTemplate_fe6ddac2b3de62b6adcfcc06052e98d94c74d94bad98bcc20484a67adc5
                     </select>
                 </div>       
                 <div class=\"form-group\">
-                    <button id=\"btn-credit\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Asignatura</button>
+                    <button id=\"btnSubject\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar Asignatura</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>       
+        \$(document).ready(function(){
+            \$(\"#btnSubject\").click(function(e){
+                e.preventDefault();
+                    \$.ajax({
+                        url: \"{{url('subjectManually')}}\",
+                        type: \"POST\",
+                        dataType: 'json',
+                        data: {
+                            \"name\":\$(\"#inputName\").val(),
+                            \"credit\":\$(\"#inputCredit\").val(),
+                            \"duration\":\$(\"#inputDuration\").val()
+                        },
+                        success: function(result){
+                            if(result.redirect){
+                               alert('Asignatura Registrada correctamente.');
+                            }
+                             var tmpLink = '<a id=\"tmpLink\" href=\"'+result.url+'\"></a>';
+                                \$(\"body\").append(tmpLink);
+                                \$(\"#tmpLink\")[0].click();
+                        }
+                    });
+            });
+        });
+    </script>
 {% endblock %}", "subject.html.twig", "/var/www/symfony/templates/subject.html.twig");
     }
 }

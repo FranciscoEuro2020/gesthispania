@@ -95,31 +95,37 @@ class __TwigTemplate_1f8540a2176c6773cf5aac082b8ed6a824866344f18a9946fcb3c444a62
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 27
-        echo "<div class=\"container-fluid h-100\">
-    <div class=\"row justify-content-center align-items-center h-100\">
-            <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
-            <form method=\"post\">
-                <br>
-                <h2 style=\"color:blck; text-align:center;\">Registro</h2>
-                <div class=\"form-group\">
-                    <input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control form-control-lg\" placeholder=\"Nombre\" required autofocus value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"text\" name=\"surname\" id=\"inputSurname\" class=\"form-control form-control-lg\" placeholder=\"Apellidos\" required autofocus value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control form-control-lg\" placeholder=\"Email\" required autofocus value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control form-control-lg\" placeholder=\"Password\" required value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"password\" name=\"password\" id=\"inputPasswordVerification\" class=\"form-control form-control-lg\" placeholder=\"Password Verificación\" required value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <button id=\"btnReg\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar</button>
-                </div>
-            </form>
+        echo "<div id=\"page-content-wrapper\">
+ ";
+        // line 28
+        $this->loadTemplate("nav.html.twig", "register.html.twig", 28)->display($context);
+        // line 29
+        echo "    <div class=\"container-fluid h-100\">
+        <div class=\"row justify-content-center align-items-center h-100\">
+                <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
+                <form method=\"post\">
+                    <br>
+                    <h2 style=\"color:blck; text-align:center;\">Registrar</h2>
+                    <div class=\"form-group\">
+                        <input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control form-control-lg\" placeholder=\"Nombre\" required autofocus value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"text\" name=\"surname\" id=\"inputSurname\" class=\"form-control form-control-lg\" placeholder=\"Apellidos\" required autofocus value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control form-control-lg\" placeholder=\"Email\" required autofocus value=\"\" autocomplete=\"nope\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control form-control-lg\" placeholder=\"Password\" required value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"password\" name=\"password\" id=\"inputPasswordVerification\" class=\"form-control form-control-lg\" placeholder=\"Password Verificación\" required value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <button id=\"btnReg\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -129,22 +135,33 @@ class __TwigTemplate_1f8540a2176c6773cf5aac082b8ed6a824866344f18a9946fcb3c444a62
 
     }
 
-    // line 56
+    // line 59
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 57
+        // line 60
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <script>
+        function validateEmail(email) {
+                var re = /^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))\$/;
+                return re.test(String(email).toLowerCase());
+        }
         function checkForm(){
             var result = true;
 
-
+            if( ! validateEmail( \$(\"#inputEmail\").val() ) ){
+                        result = false;
+                        Swal.fire(
+                            'Email no valido',
+                            result.message,
+                            'error'
+                        );
+            }
             if( \$(\"#inputPassword\").val() != \$(\"#inputPasswordVerification\").val() || \$(\"#inputPassword\").val() === ''){
                 result = false;
                 Swal.fire(
@@ -164,7 +181,7 @@ class __TwigTemplate_1f8540a2176c6773cf5aac082b8ed6a824866344f18a9946fcb3c444a62
                    
                     \$.ajax({
                         url: \"";
-        // line 81
+        // line 95
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getUrl("registerManually");
         echo "\",
                         type: \"POST\",
@@ -206,7 +223,7 @@ class __TwigTemplate_1f8540a2176c6773cf5aac082b8ed6a824866344f18a9946fcb3c444a62
 
     public function getDebugInfo()
     {
-        return array (  168 => 81,  140 => 57,  133 => 56,  98 => 27,  91 => 26,  61 => 3,  54 => 2,  37 => 1,);
+        return array (  185 => 95,  146 => 60,  139 => 59,  103 => 29,  101 => 28,  98 => 27,  91 => 26,  61 => 3,  54 => 2,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -237,31 +254,34 @@ class __TwigTemplate_1f8540a2176c6773cf5aac082b8ed6a824866344f18a9946fcb3c444a62
 {% endblock %}
 
 {% block body %}
-<div class=\"container-fluid h-100\">
-    <div class=\"row justify-content-center align-items-center h-100\">
-            <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
-            <form method=\"post\">
-                <br>
-                <h2 style=\"color:blck; text-align:center;\">Registro</h2>
-                <div class=\"form-group\">
-                    <input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control form-control-lg\" placeholder=\"Nombre\" required autofocus value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"text\" name=\"surname\" id=\"inputSurname\" class=\"form-control form-control-lg\" placeholder=\"Apellidos\" required autofocus value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control form-control-lg\" placeholder=\"Email\" required autofocus value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control form-control-lg\" placeholder=\"Password\" required value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <input type=\"password\" name=\"password\" id=\"inputPasswordVerification\" class=\"form-control form-control-lg\" placeholder=\"Password Verificación\" required value=\"\">
-                </div>
-                <div class=\"form-group\">
-                    <button id=\"btnReg\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar</button>
-                </div>
-            </form>
+<div id=\"page-content-wrapper\">
+ {% include \"nav.html.twig\" %}
+    <div class=\"container-fluid h-100\">
+        <div class=\"row justify-content-center align-items-center h-100\">
+                <div class=\"col-sm-6 col-md-6 col-lg-4 col-xs-6\" style=\"margin-top:90px;\">
+                <form method=\"post\">
+                    <br>
+                    <h2 style=\"color:blck; text-align:center;\">Registrar</h2>
+                    <div class=\"form-group\">
+                        <input type=\"text\" name=\"name\" id=\"inputName\" class=\"form-control form-control-lg\" placeholder=\"Nombre\" required autofocus value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"text\" name=\"surname\" id=\"inputSurname\" class=\"form-control form-control-lg\" placeholder=\"Apellidos\" required autofocus value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"email\" name=\"email\" id=\"inputEmail\" class=\"form-control form-control-lg\" placeholder=\"Email\" required autofocus value=\"\" autocomplete=\"nope\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control form-control-lg\" placeholder=\"Password\" required value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <input type=\"password\" name=\"password\" id=\"inputPasswordVerification\" class=\"form-control form-control-lg\" placeholder=\"Password Verificación\" required value=\"\">
+                    </div>
+                    <div class=\"form-group\">
+                        <button id=\"btnReg\" class=\"btn btn-info btn-lg btn-block\" type=\"submit\">Registrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -269,10 +289,21 @@ class __TwigTemplate_1f8540a2176c6773cf5aac082b8ed6a824866344f18a9946fcb3c444a62
 {% block javascripts %}
     {{ parent() }}
     <script>
+        function validateEmail(email) {
+                var re = /^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))\$/;
+                return re.test(String(email).toLowerCase());
+        }
         function checkForm(){
             var result = true;
 
-
+            if( ! validateEmail( \$(\"#inputEmail\").val() ) ){
+                        result = false;
+                        Swal.fire(
+                            'Email no valido',
+                            result.message,
+                            'error'
+                        );
+            }
             if( \$(\"#inputPassword\").val() != \$(\"#inputPasswordVerification\").val() || \$(\"#inputPassword\").val() === ''){
                 result = false;
                 Swal.fire(

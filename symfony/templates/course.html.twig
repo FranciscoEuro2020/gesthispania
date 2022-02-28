@@ -31,9 +31,9 @@
             <div class="col-sm-6 col-md-6 col-lg-4 col-xs-6" style="margin-top:90px;">
             <form method="post">
                 <br>
-                <h2 style="color:blck; text-align:center;">Cursos</h2>
+                <h2 style="color:blck; text-align:center;">Crear Cursos</h2>
                 <div class="form-group">
-                    <input type="text" name="course" id="inputCurso" class="form-control form-control-lg" placeholder="curso" required>
+                    <input type="text" name="course" id="inputCurso" class="form-control form-control-lg" placeholder="course" required>
                 </div>
                 <div class="form-group">
                     <input type="text" name="title" id="inputTitle" class="form-control form-control-lg" placeholder="title" required>
@@ -45,7 +45,7 @@
                     <input type="number" name="year" id="inputYear" class="form-control form-control-lg" placeholder="Año" required>
                 </div>
                 <div class="form-group">
-                    <button id="btnCourse" class="btn btn-info btn-lg btn-block" type="submit">Registrar Curso</button>
+                    <button id="btnCourse" class="btn btn-info btn-lg btn-block" type="submit">Registrar Course</button>
                 </div>
             </form>
         </div>
@@ -55,8 +55,6 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        
-
         $(document).ready(function(){
             $("#btnCourse").click(function(e){
                 e.preventDefault();
@@ -72,7 +70,7 @@
                         },
                         success: function(result){
                             if(result.redirect){
-                               alert('Curso Registrado correctamente.');
+                               alert('Course Registrado correctamente.');
                             }
                              var tmpLink = '<a id="tmpLink" href="'+result.url+'"></a>';
                                 $("body").append(tmpLink);
